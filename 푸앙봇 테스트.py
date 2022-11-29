@@ -21,7 +21,7 @@ async def Hello(ctx):
     await ctx.send("안녕하세요!")
 
 #data.txt를 uft-8로 읽어서 data에 저장합니다
-with open("data.txt", "r", encoding="utf-8") as f:
+with open("puang-art.txt", "r", encoding="utf-8") as f:
     data = f.read()
 
 @bot.command()
@@ -52,55 +52,12 @@ async def 들어와(ctx):
         await ctx.send("자 드가자~")
     else:
         await ctx.send("음성 채널에 먼저 들어가주세요!")
-"""
-@bot.command()
-async def 노래틀어줘(ctx, url):
-    channel = ctx.author.voice.channel
-    if bot.voice_clients != []:
-        await ctx.send("둠칫 두둠칫! " + str(bot.voice_clients[0].channel) + "번 방에 연결되었습니다!")
-
-        ydl_opts = {'format': 'bestaudio'}
-        FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(url, download=False)
-            URL = info['formats'][0]['url']
-        voice = bot.voice_clients[0]
-        voice.play(discord.FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
-    else:
-        await channel.connect()
-        await ctx.send("둠칫 두둠칫! " + str(bot.voice_clients[0].channel) + "번 방에 연결되었습니다!")
-
-        ydl_opts = {'format': 'bestaudio'}
-        FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(url, download=False)
-            URL = info['formats'][0]['url']
-        voice = bot.voice_clients[0]
-        voice.play(discord.FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
-"""
-
-"""       
-@bot.command()
-async def 유튜브검색(ctx, *, search):
-    channel = ctx.author.voice.channel
-    if bot.voice_clients == []:
-        await channel.connect()
-        await ctx.send("둠칫 두둠칫! " + str(bot.voice_clients[0].channel) + "번 방에 연결되었습니다!")
-
-        ydl_opts = {'format': 'bestaudio'}
-        FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info("ytsearch:" + search, download=False)
-            URL = info['entries'][0]['formats'][0]['url']
-        voice = bot.voice_clients[0]
-        voice.play(discord.FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
-"""
 
 @bot.command()
 async def 노래틀어줘(ctx, *, search):
     channel = ctx.author.voice.channel
     if bot.voice_clients != []:
-        await ctx.send("둠칫 두둠칫! " + str(bot.voice_clients[0].channel) + "번 방에 연결되었습니다!")
+        await ctx.send("둠칫 두둠칫! " + str(bot.voice_clients[0].channel) + "에 연결되었습니다!")
 
         ydl_opts = {'format': 'bestaudio'}
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
@@ -111,7 +68,7 @@ async def 노래틀어줘(ctx, *, search):
         voice.play(discord.FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
     else:
         await channel.connect()
-        await ctx.send("둠칫 두둠칫! " + str(bot.voice_clients[0].channel) + "번 방에 연결되었습니다!")
+        await ctx.send("둠칫 두둠칫! " + str(bot.voice_clients[0].channel) + "에 연결되었습니다!")
 
         ydl_opts = {'format': 'bestaudio'}
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
@@ -161,3 +118,70 @@ async def on_command_error(ctx, error):
         await ctx.send("Ah, 잘 알아두세요. 그런건 읎어요.")
 
 bot.run('여기에 토큰 입력')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+@bot.command()
+async def 노래틀어줘(ctx, url):
+    channel = ctx.author.voice.channel
+    if bot.voice_clients != []:
+        await ctx.send("둠칫 두둠칫! " + str(bot.voice_clients[0].channel) + "번 방에 연결되었습니다!")
+
+        ydl_opts = {'format': 'bestaudio'}
+        FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(url, download=False)
+            URL = info['formats'][0]['url']
+        voice = bot.voice_clients[0]
+        voice.play(discord.FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
+    else:
+        await channel.connect()
+        await ctx.send("둠칫 두둠칫! " + str(bot.voice_clients[0].channel) + "번 방에 연결되었습니다!")
+
+        ydl_opts = {'format': 'bestaudio'}
+        FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(url, download=False)
+            URL = info['formats'][0]['url']
+        voice = bot.voice_clients[0]
+        voice.play(discord.FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
+"""
+
+"""       
+@bot.command()
+async def 유튜브검색(ctx, *, search):
+    channel = ctx.author.voice.channel
+    if bot.voice_clients == []:
+        await channel.connect()
+        await ctx.send("둠칫 두둠칫! " + str(bot.voice_clients[0].channel) + "번 방에 연결되었습니다!")
+
+        ydl_opts = {'format': 'bestaudio'}
+        FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info("ytsearch:" + search, download=False)
+            URL = info['entries'][0]['formats'][0]['url']
+        voice = bot.voice_clients[0]
+        voice.play(discord.FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
+"""
