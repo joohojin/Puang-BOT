@@ -117,7 +117,7 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.send("Ah, 잘 알아두세요. 그런건 읎어요.")
 
-bot.run('MTA0MjYxODA5MDA2NTc3NjY5MQ.GskFHC.6R4veXrudGWl0ePmmD39a4JYzam6282qAr5_WY')
+bot.run('여기에 토큰 입력')
 
 
 
