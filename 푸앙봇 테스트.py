@@ -57,7 +57,7 @@ async def 들어와(ctx):
 async def 노래틀어줘(ctx, *, search):
     channel = ctx.author.voice.channel
     if bot.voice_clients != []:
-        await ctx.send("둠칫 두둠칫! " + str(bot.voice_clients[0].channel) + "번 방에 연결되었습니다!")
+        await ctx.send("둠칫 두둠칫! " + str(bot.voice_clients[0].channel) + "에 연결되었습니다!")
 
         ydl_opts = {'format': 'bestaudio'}
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
@@ -68,7 +68,7 @@ async def 노래틀어줘(ctx, *, search):
         voice.play(discord.FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
     else:
         await channel.connect()
-        await ctx.send("둠칫 두둠칫! " + str(bot.voice_clients[0].channel) + "번 방에 연결되었습니다!")
+        await ctx.send("둠칫 두둠칫! " + str(bot.voice_clients[0].channel) + "에 연결되었습니다!")
 
         ydl_opts = {'format': 'bestaudio'}
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
