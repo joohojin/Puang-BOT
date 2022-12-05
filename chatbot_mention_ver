@@ -1,0 +1,59 @@
+import discord
+from discord.ext import commands
+from discord.ext.commands import Bot
+import os
+import asyncio
+import nacl
+qe = "이게 바로 확인용"
+game = discord.Game("Chatbot") 
+
+intents = discord.Intents.all()
+
+bot = commands.Bot(command_prefix='! ', status=discord.Status.online, activity=game, intents=intents)
+
+@bot.event
+async def on_ready():
+    print('다음으로 로그인합니다 : {0.user}'.format(bot))
+
+@bot.command()
+async def Hello(ctx):
+    await ctx.send("안녕하세요!")
+
+"""#data.txt를 uft-8로 읽어서 data에 저장합니다
+with open("puang-art.txt", "r", encoding="utf-8") as f:
+    data = f.read()
+
+@bot.command()
+async def 푸앙이(ctx):
+    await ctx.send(data)"""
+
+
+@bot.command()
+async def 들어와(ctx):
+    if ctx.author.voice and ctx.author.voice.channel:
+        channel = ctx.author.voice.channel
+        await channel.connect()
+        await ctx.send("자 드가자~")
+    else:
+        await ctx.send("음성 채널에 먼저 들어가주세요!")
+
+@bot.command()
+async def 챗(ctx):
+    await ctx.reply("wfdg")
+
+
+# 봇이 퇴장할 수 있도록 하는 명령어
+@bot.command()
+async def 나가(ctx):
+    if bot.voice_clients != []:
+        await bot.voice_clients[0].disconnect()
+        await ctx.send("흐잉...")
+    else:
+        await ctx.send("저는 아직 아무 채널에도 들어가있지 않아요!")
+
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send("Ah, 잘 알아두세요. 그런건 읎어요.")
+
+bot.run('Token')
