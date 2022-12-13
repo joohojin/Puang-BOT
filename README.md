@@ -1,7 +1,7 @@
 # Puang-Bot
 
 ## 소개
-- Discord에서 작동하는 chatbot Puang-Bot입니다.
+- Discord에서 작동하는 Chatbot, Puang-Bot입니다.
 - 질문에 대한 답변을 할 수 있습니다.
 - 질문에 대한 답변을 학습할 수 있습니다.
 
