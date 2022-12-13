@@ -40,11 +40,11 @@ async def 애옹(ctx):
     await ctx.send("https://media.discordapp.net/attachments/844584876904677440/895539776709607454/95261-20211007-140653-000.gif")
 
 # 챗봇
-@app_commands.command(name = '푸앙아', description = '푸앙이와 대화하기')
+@bot.slash_command(ctx, name = '푸앙아', description = '푸앙이와 대화하기')
 async def 대화(interaction : Interaction, *, message : str):  
     # 푸앙 메시지를 입력하면 chat(메시지) 함수를 출력합니다.
     # 이제 답장으로 푸앙이가 말할 수 있게 되었습니다.
-    await interaction.reply(cb.chat(message))
+    await interaction.reply(chat(message))
 
 # 명령어가 없을 때
 @bot.event
@@ -67,9 +67,6 @@ def save_old_chatbot_data():
     today = today.strftime("%Y-%m-%d-%H-%M-%S")
     chatbot_data.to_csv('data/ChatBotData-Old/ChatBotData({}).csv'.format(today), index=False)
 
-
-
-
 # 만약 data\ChatBotData-Old에 백업 csv 파일이 10개를 초과하면 만들어진 날짜가 가장 오래된 백업 csv파일을 삭제하는 함수
 def delete_old_chatbot_data():
     file_list = os.listdir('data/ChatBotData-Old')
@@ -83,7 +80,7 @@ def delete_old_chatbot_data():
 
 
 # 챗봇에게 질문과 답변을 가르치는 함수
-@app_commands.command(name = '가르치기', description = "푸앙이에게 답변 가르치기")
+@bot.slash_command(ctx, name = '가르치기', description = "푸앙이에게 답변 가르치기")
 async def 가르치기(interaction: Interaction):
     # 먼저 디스코드 사용자에게 질문을 채팅으로 물어봅니다.
     await interaction.send("뭐라고 물어보실 건가요?")
@@ -118,6 +115,11 @@ async def 가르치기(interaction: Interaction):
     # 질문과 답변을 모두 불러와 추가까지 하였다면 성공적으로 추가되었다는 메시지를 출력합니다.
     await ctx.send("질문과 답변이 추가되었습니다!")
 
+
+
+
+
+
 # main부분
 
 # Commented out IPython magic to ensure Python compatibility.
@@ -132,13 +134,19 @@ save_old_chatbot_data()
 # 만약 data\ChatBotData-Old에 백업 csv 파일이 10개를 초과하면 만들어진 날짜가 가장 오래된 백업 csv파일을 삭제합니다.
 delete_old_chatbot_data()
 
-bot.run('MTA0MjYxODA5MDA2NTc3NjY5MQ.GTxkeJ.F4BHFKAain8POsF1zLiuX9h9vnshfexE7RK7Is')
+bot.run('여기에 토큰 입력')
+
+
+
+
+
+
+
+
+
+
 
 # 주의! 다음 코드는 ChatBotData.csv의 빠른 복구를 위한 코드입니다.
-
-
-
-
 
 '''
 # 기존의 data\ChatBotData-Old\ChatBotData.csv를 읽어와 data\ChatBotData.csv에 저장합니다. 데이터를 복구하시겠습니까? 라는 질문에 사용자가 y를 입력하면 복구합니다.
