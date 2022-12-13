@@ -6,6 +6,8 @@
 using namespace std;
 
 int main() {
+    // cmd 창의 크기를 intro.txt의 크기에 맞춥니다.
+    system("mode con cols=91 lines=56");
 
     // data/intro.txt를 읽어와 출력합니다.
     system("type data\\intro.txt");
