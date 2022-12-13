@@ -7,20 +7,19 @@ using namespace std;
 
 int main() {
 
-    // 우선 main.py를 실행시킵니다.
-	system("python main.py");
-	
-	// 시작 시간을 기록합니다.
-	auto start = chrono::system_clock::now();
+    // data/intro.txt를 읽어와 출력합니다.
+    system("type data\\intro.txt");
+
+    // 새로운 창에 main.py를 실행합니다.
+    system("start python main.py");
+
 
     while (true) {
-		// 현재 시간을 hour, min, sec에 기록합니다. localtime은 사용하지 않습니다.
+		// 현재 시간을 hour, min, sec에 기록합니다.
 		time_t now = chrono::system_clock::to_time_t(chrono::system_clock::now());
 		int hour = now / 3600 % 24;
 		int min = now / 60 % 60;
 		int sec = now % 60;
-		
-		
 		
 
         // 현재 시간이 정시라면 main.py를 실행합니다.
@@ -29,10 +28,7 @@ int main() {
             system("taskkill /f /im python.exe");
 
             // main.py를 실행합니다.
-            system("python main.py");
-
-            // 20분간 대기합니다.
-            this_thread::sleep_for(chrono::seconds(1200));		
+            system("start python main.py");
         }
         // 1초간 대기합니다.
         this_thread::sleep_for(chrono::seconds(1));
