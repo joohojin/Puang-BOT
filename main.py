@@ -698,8 +698,13 @@ save_old_chatbot_data()
 # 만약 data\ChatBotData-Old에 백업 csv 파일이 10개를 초과하면 만들어진 날짜가 가장 오래된 백업 csv파일을 삭제합니다.
 delete_old_chatbot_data()
 
-# 봇을 실행합니다. '여기에 토큰 입력' 부분에 토큰을 입력하세요.
-bot.run('여기에 토큰 입력')
+# 봇을 실행합니다. Token.txt의 여기에 토큰 입력 부분에 토큰을 입력하세요.
+
+# token.txt 파일을 읽어와 token에 저장합니다.
+with open('token.txt', 'r') as f:
+    token = f.read()
+
+bot.run(token)
 
 # 주의! 다음 코드는 ChatBotData.csv의 빠른 복구를 위한 코드입니다.
 
