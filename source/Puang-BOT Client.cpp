@@ -29,10 +29,21 @@ int main() {
             // main.py를 정지합니다.
             system("taskkill /f /im python.exe");
 
+            // tool/fakepuang.exe를 실행합니다.
+            system("start tool\\fakepuang.exe");
+
             // main.py를 실행합니다.
             system("start python main.py");
+
+            // 10~20분 사이의 랜덤한 시간을 기다립니다.
+            this_thread::sleep_for(chrono::seconds(rand() % 600 + 600));
+
+            // fakepuang.exe를 정지합니다.
+            system("taskkill /f /im fakepuang.exe");
         }
         // 1초간 대기합니다.
         this_thread::sleep_for(chrono::seconds(1));
     }
+
+    return 0;
 }
