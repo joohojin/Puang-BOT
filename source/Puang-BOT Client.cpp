@@ -7,11 +7,14 @@ using namespace std;
 
 int main() {
 
-    // fakepuang.exe이 실행되어 있으면 종료합니다.
-    system("taskkill /f /im fakepuang.exe");
-
     // cmd 창의 크기를 intro.txt의 크기에 맞춥니다.
     system("mode con cols=91 lines=56");
+
+    // cmd 창의 제목을 Puang-BOT Client로 설정합니다.
+    system("title Puang-BOT Client");
+
+    // fakepuang.exe이 실행되어 있으면 종료합니다.
+    system("taskkill /f /im fakepuang.exe");
 
     // data/intro.txt를 읽어와 출력합니다.
     system("type data\\intro.txt");
