@@ -6,6 +6,10 @@
 using namespace std;
 
 int main() {
+
+    // fakepuang.exe이 실행되어 있으면 종료합니다.
+    system("taskkill /f /im fakepuang.exe");
+
     // cmd 창의 크기를 intro.txt의 크기에 맞춥니다.
     system("mode con cols=91 lines=56");
 
@@ -35,8 +39,8 @@ int main() {
             // main.py를 실행합니다.
             system("start python main.py");
 
-            // 10~20분 사이의 랜덤한 시간을 기다립니다.
-            this_thread::sleep_for(chrono::seconds(rand() % 600 + 600));
+            // 7분간 대기합니다.
+            this_thread::sleep_for(chrono::seconds(420));
 
             // fakepuang.exe를 정지합니다.
             system("taskkill /f /im fakepuang.exe");
