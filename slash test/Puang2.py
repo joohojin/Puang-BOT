@@ -1,17 +1,22 @@
+import interactions
 import discord
-from discord import app_commands
 
-intents = discord.Intents.default()
-client = discord.Client(intents=intents)
-tree = app_commands.CommandTree(client)
+bot = interactions.Client(token="MTA1MjYwNTA4NDk1NTA2MjMzMw.Gs5eON.K2N3J9QgPpV4y2NxV9vt_XH5ZsFNJf8Jz3bW8k")
 
-@tree.command(name = "hi",description="푸앙봇 제 2호와 인사하기", guild=discord.Object(id = 1039072581237624952))
-async def first_command(interaction):
-    await interaction.response.send_message("Hello!")
+@bot.command(
+    name="say_something",
+    description="say something!",
+    scope=1039072581237624952,
+    options = [
+        interactions.Option(
+            name="text",
+            description="What you want to say",
+            type=interactions.OptionType.STRING,
+            required=True,
+        ),
+    ],
+)
+async def my_first_command(ctx: interactions.CommandContext, text: str):
+    await ctx.send(f"You said '{text}'!")
 
-@client.event
-async def on_ready():
-    await tree.sync(guild=discord.Object(id = 1039072581237624952))
-    print("{0.user}로 로그인합니다.")
-
-client.run('MTA1MjYwNTA4NDk1NTA2MjMzMw.GEcnT9.lHPvQdJbslviBY9uUl3dZS5e7196jbEcsMsuKc')
+bot.start()
