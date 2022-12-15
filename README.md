@@ -38,7 +38,7 @@
   - [Puang-BOT 폴더 구성](#puang-bot-폴더-구성)
     - [Puang-BOT Client.exe](#puang-bot-clientexe-1)
     - [requirements.txt](#requirementstxt)
-    - [Token](#token)
+    - [Token.txt](#tokentxt)
   - [Puang-BOT/data 폴더 구성](#puang-botdata-폴더-구성)
     - [ChatBotData.csv](#chatbotdatacsv)
     - [intro.txt](#introtxt)
@@ -144,7 +144,7 @@ User : /가르치기
   - matplotlib
   - pydot
 
-### Token
+### Token.txt
 
 - Discord Bot Token은 내장된 Token.txt 파일에 입력하여 사용합니다.
 - '여기에 토큰 입력' 부분을 본인의 토큰으로 변경하여 사용합니다.
