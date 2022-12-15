@@ -14,4 +14,4 @@ async def on_ready():
     await tree.sync(guild=discord.Object(id = 1039072581237624952))
     print("{0.user}로 로그인합니다.")
 
-client.run('MTA1MjYwNTA4NDk1NTA2MjMzMw.GEcnT9.lHPvQdJbslviBY9uUl3dZS5e7196jbEcsMsuKc')
+client.run('토큰')
