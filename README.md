@@ -14,17 +14,17 @@
     - [Puang-BOT Client.exe](#puang-bot-clientexe)
     - [requirements.txt](#requirementstxt)
     - [Token](#token)
-  - [Puang-BOT\\data](#puang-botdata)
+  - [Puang-BOT/data 폴더 구성](#puang-botdata-폴더-구성)
     - [ChatBotData.csv](#chatbotdatacsv)
     - [intro.txt](#introtxt)
     - [data/ChatBotData-Old 폴더](#datachatbotdata-old-폴더)
     - [Organizing-Data, Validation Data](#organizing-data-validation-data)
-  - [Puang-BOT\\source 폴더 구성](#puang-botsource-폴더-구성)
+  - [Puang-BOT/source 폴더 구성](#puang-botsource-폴더-구성)
     - [Puang-BOT Client.cpp](#puang-bot-clientcpp)
     - [chat-bot.ipynb](#chat-botipynb)
     - [푸앙봇 테스트.py, chatbot\_mention\_ver, GPT3\_Chatbot.ipynb](#푸앙봇-테스트py-chatbot_mention_ver-gpt3_chatbotipynb)
     - [Puang.ico(png)](#puangicopng)
-  - [Puang-BOT\\tool](#puang-bottool)
+  - [Puang-BOT/tool 폴더 구성](#puang-bottool-폴더-구성)
     - [fakepuang.exe](#fakepuangexe)
     - [fakepuang.py](#fakepuangpy)
     - [data organizing.py](#data-organizingpy)
@@ -107,7 +107,7 @@ User : /가르치기
 - Discord Bot Token은 내장된 Token.txt 파일에 입력하여 사용합니다.
 - '여기에 토큰 입력' 부분을 본인의 토큰으로 변경하여 사용합니다.
   
-## Puang-BOT\data
+## Puang-BOT/data 폴더 구성
 
 ### ChatBotData.csv
 
@@ -132,7 +132,7 @@ User : /가르치기
 - 위 데이터들은 AI Hub의 챗봇 데이터를 사용하였습니다.
 - https://www.aihub.or.kr/
 
-## Puang-BOT\source 폴더 구성
+## Puang-BOT/source 폴더 구성
 
 ### Puang-BOT Client.cpp
 
@@ -155,7 +155,7 @@ User : /가르치기
 - Puang-BOT Client.exe의 아이콘입니다.
 - 위 파일은 중앙대학교에서 제공하는 푸앙이 이미지를 편집하여 만들었습니다.
   
-## Puang-BOT\tool
+## Puang-BOT/tool 폴더 구성
 
 ### fakepuang.exe
 
