@@ -89,7 +89,7 @@ User : /가르치기
   
 - 매 정각마다 학습을 진행합니다. (학습은 컴퓨터 성능에 따라 5~20분 정도 소요됩니다.)
 - Puang-BOT Client.exe는 C++로 작성되었습니다.
-- Source Code는 Source 폴더의 Puang-BOT Client.cpp 파일을 참고해주세요.
+- Source Code는 source 폴더의 Puang-BOT Client.cpp 파일을 참고해주세요.
    
 ### requirements.txt
 
