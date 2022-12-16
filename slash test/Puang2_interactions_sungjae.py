@@ -4,51 +4,32 @@ import asyncio
 
 bot = interactions.Client(token="토큰")
 
-@bot.command(
-    name="say_something",
-    description="say something!",
-    scope=1039072581237624952,
-    options = [
-        interactions.Option(
-            name="text",
-            description="What you want to say",
-            type=interactions.OptionType.STRING,
-            required=True,
-        ),
-    ],
-)
-async def my_first_command(ctx: interactions.CommandContext, text: str):
-    await ctx.send(f"You said '{text}'!")
-
+user_dic = {}
 
 @bot.command(
-    name = "teach",
-    description = "푸앙이에게 답변 가르치기",
-    scope = 1039072581237624952,
+    name = "teach", #/명령어 이름
+    description = "teaching Puang", #/명령어 설명
+    scope = 1039072581237624952, #서버 id
     options = [
         interactions.Option(
-            name = "text",
-            description = "What you want to teach",
+            name = "question", #/명령어 옵션 이름
+            description = "What question do you want to teach", #/명령어 옵션 설명
             type = interactions.OptionType.STRING,
             required=True,
         ),
+        interactions.Option(
+            name = "answer",
+            description = "what answer do you want to teach",
+            type = interactions.OptionType.STRING,
+            required = True, 
+        ),
     ],
 )
-async def teach(ctx: interactions.CommandContext, text: str):
-        # 사용자가 입력한 질문을 question에 저장합니다.
-    # 받아온 question에 대한 함께 답변을 물어봅니다.
-    await ctx.send("'{text}'에 대한 답변은 무엇인가요?")
-    # 사용자가 입력한 답변을 받아옵니다.
-    
-    try:
-        msg = await ctx.send('message', timeout=60.0, check=check)
-    except asyncio.TimeoutError:
-        await ctx.send('시간이 초과되었습니다.')
-    else:
-        # 사용자가 입력한 답변을 answer에 저장합니다.
-        answer = msg.content
-    # 질문과 답변을 모두 불러와 추가까지 하였다면 성공적으로 추가되었다는 메시지를 출력합니다.
-    await ctx.send(answer)
-    
+async def first_command(ctx: interactions.CommandContext, question, answer):
+        await ctx.send(f"You teach the question: ``'{question}'``")
+        await ctx.send(f"You teach the answer: ``'{answer}'`` to the question: ``'{question}'``")
+        
+
+
 
 bot.start()
