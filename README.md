@@ -49,6 +49,7 @@
     - [chat-bot.ipynb](#chat-botipynb)
     - [푸앙봇 테스트.py, chatbot\_mention\_ver, GPT3\_Chatbot.ipynb](#푸앙봇-테스트py-chatbot_mention_ver-gpt3_chatbotipynb)
     - [Puang.ico(png)](#puangicopng)
+    - [puangbot.py](#puangbotpy)
   - [Puang-BOT/tool 폴더 구성](#puang-bottool-폴더-구성)
     - [fakepuang.exe](#fakepuangexe)
     - [fakepuang.py](#fakepuangpy)
@@ -198,7 +199,7 @@ User : /가르치기 '1+1은?' '2입니다!'
 - Puang-BOT Client.exe의 아이콘입니다.
 - 위 파일은 중앙대학교에서 제공하는 푸앙이 이미지를 편집하여 만들었습니다.
   
-### pu  ngbot.py
+### puangbot.py
 
 - slash command를 테스트하기 위해 작성한 코드입니다.
 - 자세한 시도들은 Puang-BOT/source/slash test 폴더를 봐주시기 바랍니다.
