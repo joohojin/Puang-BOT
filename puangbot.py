@@ -1,3 +1,4 @@
+import discord
 import interactions
 import asyncio
 import os
