@@ -651,7 +651,7 @@ async def teach(ctx, 메시지):
 # 가르치기 기능
 @bot.slash_command(name = "가르치기", description = "푸앙이에게 질문과 대답 가르치기")
 async def first_command(ctx, 질문, 대답):
-        await ctx.respond(f"앞으로 ``'{질문}'``이라는 질문에 ``'{대답}'``라고 대답할게요! 학습이 될 때까지 기다려주세요!")
+        await ctx.respond(f"앞으로 ``'{질문}'``이라는 질문에 ``'{대답}'``라고 대답할게요!")
 
         # 질문과 답변을 저장    
         today = datetime.datetime.today()
