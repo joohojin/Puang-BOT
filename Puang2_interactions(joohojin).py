@@ -1,23 +1,18 @@
-import discord
-import interactions
+from interactions import Client, Message
+from interactions.ext.wait_for import wait_for, setup
+import asyncio
 
-bot = interactions.Client(token="토큰")
+bot = Client(token="MTA1MzIwMzY3NjE1MzUyMDEyOA.Ggd2IG.wDG7Jz1h_YT3Dbdy-LChoMKC6e5Lo7Kdd9M_58")
 
-@bot.command(
-    name="say_something",
-    description="say something!",
-    scope=1039072581237624952,
-    options = [
-        interactions.Option(
-            name="text",
-            description="What you want to say",
-            type=interactions.OptionType.STRING,
-            required=True,
-        ),
-    ],
-)
-async def my_first_command(ctx: interactions.CommandContext, text: str):
-    await ctx.send(f"You said '{text}'!")
+setup(bot)
+
+# interactions 라이브러리를 사용하여 /teach가 입력되면 가르치기 기능을 실행하도록 한다.
+
+@bot.event()
+async def on_message_create(message: Message):
+    if message.content == "/teach":
+        await message.channel.send("test")
+
 
 # 가르치기 기능 추가
 @bot.command(
@@ -25,43 +20,40 @@ async def my_first_command(ctx: interactions.CommandContext, text: str):
     description="teach me something!",
     scope=1039072581237624952,
 )
-async def my_second_command(ctx: interactions.CommandContext):
-    await ctx.send(f"가르쳐드릴게요!")
-    await teach_command(ctx)
+async def my_second_command(ctx):
+    await ctx.send("grabbing a message...")
 
+    # A simple example check function.
+    # Returns True if the original author is the same as the user invoking the wait_for.
+    # Returns False if another member is attempting to invoke the wait_for
+    async def check(msg):
+        if int(msg.author.id) == int(ctx.author.user.id):
+            return True
+        await ctx.send("I wasn't asking you")
+        return False
 
-# my_second_command에서 사용할 수 있는 학습 명령어를 추가합니다.
+    try:
+        # Define the wait_for.
+        # This particular example listens for the raw on_message_create event which then returns a Message object.
+        # With this, you have the ability to read the content (if the privileged intent has been
+        # approved in the Discord Dev dashboard), any attachments, stickers, etc.
 
-def teach_command(text: str):
-    @bot.command()
-    async def asdf(ctx):
-        # 사용자 입력을 받아 question에 저장합니다. 제한시간은 30초입니다.
-        await ctx.send("질문?")
-        question = await ctx.wait_for_input(timeout=30)
-        # 사용자 입력을 받아 answer에 저장합니다.
-        await ctx.send("답변?")
-        answer = await ctx.wait_for_input(timeout=30)
-        
-        # question과 answer를 출력합니다.
-        await ctx.send(f"질문: {question}")
-        await ctx.send(f"답변: {answer}")
+        answer: Message = await wait_for(ctx, "on_message_create", check=check, timeout=15)
+
+        await ctx.send(f"You said: {answer.content}")
+        # Afterwards, here you can put your code to execute after the wait_for has been fulfilled,
+        # the checks have passed, and the timeout has not been reached.
+    except asyncio.TimeoutError:
+        # If your specified timeout reaches its end, here you may add your code for that condition.
+        return await ctx.send("You said nothing :(")
 
 # 챗봇 답변 기능 추가
 
 @bot.command(
     name="chat",
     description="chat with me!",
-    scope=1039072581237624952,
-    options = [
-        interactions.Option(
-            name="text",
-            description="What you want to say",
-            type=interactions.OptionType.STRING,
-            required=True,
-        ),
-    ],
 )
-async def my_third_command(ctx: interactions.CommandContext, text: str):
+async def my_third_command(ctx, text: str):
     await ctx.send(f"'{text}'")
     await ctx.send(f"여기에 답변 함수 입력")
 

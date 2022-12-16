@@ -1,26 +1,18 @@
-# 챗봇 실시간 구현
-
-# Commented out IPython magic to ensure Python compatibility.
-# %pip install schedule
-
-# 디스코드 챗봇 구현
-
 import discord
-from discord import app_commands
-from discord import Interaction
-from discord.ext import commands
-from discord.ext.commands import Bot
+import interactions
+import asyncio
 import os
 import pandas as pd
 import time
 
 import datetime
 
+
 game = discord.Game("퐝퐝이") 
 
-intents = discord.Intents.all()
+bot = interactions.Client(token="토큰")
 
-bot = commands.Bot(command_prefix='푸앙아 ', status=discord.Status.online, activity=game, intents=intents)
+user_dic = {}
 
 @bot.event
 async def on_ready():
@@ -28,7 +20,6 @@ async def on_ready():
 
 with open("data/puang-art.txt", "r", encoding="utf-8") as f:
     data = f.read()
-
 
 # 이스터에그
 @bot.command()
@@ -39,26 +30,11 @@ async def 푸앙이(ctx):
 async def 애옹(ctx):
     await ctx.send("https://media.discordapp.net/attachments/844584876904677440/895539776709607454/95261-20211007-140653-000.gif")
 
-# 챗봇
-@bot.slash_command(ctx, name = '푸앙아', description = '푸앙이와 대화하기')
-async def 대화(interaction : Interaction, *, message : str):  
-    # 푸앙 메시지를 입력하면 chat(메시지) 함수를 출력합니다.
-    # 이제 답장으로 푸앙이가 말할 수 있게 되었습니다.
-    await interaction.reply(chat(message))
-
-# 명령어가 없을 때
-@bot.event
-async def on_command_error(ctx, error):
-    if isinstance(error, commands.CommandNotFound):
-        await ctx.send("그런 명령어는 존재하지 않아요!")
-
-
 
 # 데이터 학습 및 저장 구현
 
 # 기존의 ChatBotData.csv 파일을 읽어온다.
 chatbot_data = pd.read_csv('data/ChatBotData.csv')
-
 
 
 # data\ChatBotData-Old에 ChatBotData.csv의 이름을 ChatBotData(오늘의 날짜 및 시간).csv로 변경하여 저장해주는 함수
@@ -77,56 +53,45 @@ def delete_old_chatbot_data():
             os.remove('data/ChatBotData-Old/' + file_list[i])
 
 
+# 챗봇 답변 기능
+@bot.command(
+    name="푸앙아",
+    description="푸앙이랑 이야기해요!",
+)
+async def my_third_command(ctx, text: str):
+    await ctx.send(chat(text))
 
 
-# 챗봇에게 질문과 답변을 가르치는 함수
-@bot.slash_command(ctx, name = '가르치기', description = "푸앙이에게 답변 가르치기")
-async def 가르치기(interaction: Interaction):
-    # 먼저 디스코드 사용자에게 질문을 채팅으로 물어봅니다.
-    await interaction.send("뭐라고 물어보실 건가요?")
-    # 사용자가 채팅으로 답변을 입력할 때까지 기다립니다.
-    def check(m):
-        return m.author == ctx.author and m.channel == ctx.channel
+# 가르치기 기능
+@bot.command(
+    name = "가르치기", #/명령어 이름
+    description = "푸앙이를 가르쳐주세요!", #/명령어 설명
+    scope = 1039072581237624952, #서버 id
+    options = [
+        interactions.Option(
+            name = "질문:", #/명령어 옵션 이름
+            description = "어떻게 물어보실건가요?", #/명령어 옵션 설명
+            type = interactions.OptionType.STRING,
+            required=True,
+        ),
+        interactions.Option(
+            name = "답변:",
+            description = "어떻게 대답할까요?",
+            type = interactions.OptionType.STRING,
+            required = True, 
+        ),
+    ],
+)
+async def first_command(ctx: interactions.CommandContext, question, answer):
+        await ctx.send(f"저에게 ``'{answer}'`` 라고 물어보시면 ``'{question}'`` 라고 대답할게요!")
 
-    try:
-        msg = await bot.wait_for('message', timeout=60.0, check=check)
-    except asyncio.TimeoutError:
-        await ctx.send('시간이 초과되었습니다.')
-    else:
-        # 사용자가 입력한 질문을 question에 저장합니다.
-        question = msg.content
-    # 받아온 question에 대한 함께 답변을 물어봅니다.
-    await ctx.send(question + "에 대한 답변은 무엇인가요?")
-    # 사용자가 입력한 답변을 받아옵니다.
-    
-    try:
-        msg = await bot.wait_for('message', timeout=60.0, check=check)
-    except asyncio.TimeoutError:
-        await ctx.send('시간이 초과되었습니다.')
-    else:
-        # 사용자가 입력한 답변을 answer에 저장합니다.
-        answer = msg.content
-    # 받아온 질문과 답변을 quastion,answer,날짜(사용자이름) 으로ChatBotData.csv에 추가합니다.
-    today = datetime.datetime.today()
-    today = today.strftime("%Y-%m-%d")
-    chatbot_data.loc[len(chatbot_data)] = [question, answer, today + "(" + ctx.author.name + ")"]
-    # ChatBotData.csv를 저장합니다.
-    chatbot_data.to_csv('data/ChatBotData.csv', index=False)
-    # 질문과 답변을 모두 불러와 추가까지 하였다면 성공적으로 추가되었다는 메시지를 출력합니다.
-    await ctx.send("질문과 답변이 추가되었습니다!")
+        # 질문과 답변을 저장
+        today = datetime.datetime.today()
+        today = today.strftime("%Y-%m-%d")
+        chatbot_data.loc[len(chatbot_data)] = [question, answer, today + "(" + ctx.author.name + ")"]
+        # ChatBotData.csv를 저장합니다.
+        chatbot_data.to_csv('data/ChatBotData.csv', index=False)
 
-
-
-
-
-
-# main부분
-
-# Commented out IPython magic to ensure Python compatibility.
-# Jupyter Notebook에서는 이 코드를 실행하세요
-# %pip install nest_asyncio 
-import nest_asyncio 
-nest_asyncio.apply()
 
 # 먼저 기존의 ChatBotData.csv를 data\ChatBotData-Old에 저장합니다.
 save_old_chatbot_data()
@@ -134,7 +99,9 @@ save_old_chatbot_data()
 # 만약 data\ChatBotData-Old에 백업 csv 파일이 10개를 초과하면 만들어진 날짜가 가장 오래된 백업 csv파일을 삭제합니다.
 delete_old_chatbot_data()
 
-bot.run('여기에 토큰 입력')
+
+bot.start()
+
 
 
 

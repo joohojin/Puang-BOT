@@ -9,6 +9,18 @@ tree = app_commands.CommandTree(client)
 async def first_command(interaction):
     await interaction.response.send_message("Hello!")
 
+# 학습하기
+@tree.command(name = "teach", description = "학습하기", guild = discord.Object(id = 1039072581237624952))
+async def second_command(interaction):
+    # 사용자의 입력을 받는다.
+    await interaction.response.send_message("뭐")
+    question = await client.wait_for('message', check=lambda message: message.author == interaction.user)
+    await interaction.response.send_message("뭐라고?")
+    answer = await client.wait_for('message', check=lambda message: message.author == interaction.user)
+    await interaction.response.send_message("알겠어")
+    # 질문과 답변을 전송한다.
+    await interaction.response.send_message("질문: " + question.content + "답변: " + answer.content)
+
 @client.event
 async def on_ready():
     await tree.sync(guild=discord.Object(id = 1039072581237624952))
