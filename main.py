@@ -645,7 +645,7 @@ def delete_old_chatbot_data():
 @bot.slash_command(name = "푸앙아", desription = "푸앙이와 대화하기")
 async def teach(ctx, 메시지):
     await ctx.respond(ctx.author.name +  "님 :" + 메시지)
-    await ctx.respond("여기에 답변 입력")
+    await ctx.respond(chat(메시지))
 
 
 # 가르치기 기능
