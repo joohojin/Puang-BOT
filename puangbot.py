@@ -7,7 +7,11 @@ import time
 
 import datetime
 
-bot = interactions.Client(token="MTA0MjYxODA5MDA2NTc3NjY5MQ.G1LQyk.v7eUNU96pqSz4XPGV1lrjs1T8PfW6pZuJ2bIOg")
+# Token.txt 파일을 읽어와 token에 저장합니다.
+with open('Token.txt', 'r') as f:
+    token = f.read()
+
+bot = interactions.Client(token=token)
 
 user_dic = {}
 
@@ -46,7 +50,7 @@ def delete_old_chatbot_data():
             # 백업 csv 파일이 만들어진 날짜가 가장 오래된 파일을 삭제
             os.remove('data/ChatBotData-Old/' + file_list[i])
 
-
+asdf = "채팅"
 # 챗봇 답변 기능
 @bot.command(
     name="chat",

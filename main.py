@@ -700,8 +700,8 @@ delete_old_chatbot_data()
 
 # 봇을 실행합니다. Token.txt의 여기에 토큰 입력 부분에 토큰을 입력하세요.
 
-# token.txt 파일을 읽어와 token에 저장합니다.
-with open('token.txt', 'r') as f:
+# Token.txt 파일을 읽어와 token에 저장합니다.
+with open('Token.txt', 'r') as f:
     token = f.read()
 
 bot.run(token)
