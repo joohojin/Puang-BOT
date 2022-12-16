@@ -76,13 +76,8 @@ User : /푸앙아 '푸앙해줘'
 ```
 User : /가르치기 '1+1은?' '2입니다!'
 ```
-<<<<<<< Updated upstream
-``Puang-Bot`` : '1+1은?'에 대한 답변: '2입니다!'
-
-=======
 ``Puang-Bot`` : 앞으로 '1+1은?'이라는 질문에 '2입니다!'라고 대답할게요! 학습이 될 때까지 기다려주세요!
     
->>>>>>> Stashed changes
 # 실행 방법
 
 ## 라이브러리 설치
@@ -201,6 +196,11 @@ User : /가르치기 '1+1은?' '2입니다!'
 - Puang-BOT Client.exe의 아이콘입니다.
 - 위 파일은 중앙대학교에서 제공하는 푸앙이 이미지를 편집하여 만들었습니다.
   
+  ## puangbot.py
+
+- slash command를 테스트하기 위해 작성한 코드입니다.
+- 자세한 시도들은 Puang-BOT/source/slash test 폴더를 봐주시기 바랍니다.
+
 ## Puang-BOT/tool 폴더 구성
 
 ### fakepuang.exe
