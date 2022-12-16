@@ -1,4 +1,3 @@
-import discord
 import interactions
 import asyncio
 import os
@@ -7,20 +6,14 @@ import time
 
 import datetime
 
-
-game = discord.Game("퐝퐝이") 
-
 bot = interactions.Client(token="토큰")
 
 user_dic = {}
 
-@bot.event
-async def on_ready():
-    print('다음으로 로그인합니다 : {0.user}'.format(bot))
-
 with open("data/puang-art.txt", "r", encoding="utf-8") as f:
     data = f.read()
 
+'''
 # 이스터에그
 @bot.command()
 async def 푸앙이(ctx):
@@ -29,7 +22,7 @@ async def 푸앙이(ctx):
 @bot.command()
 async def 애옹(ctx):
     await ctx.send("https://media.discordapp.net/attachments/844584876904677440/895539776709607454/95261-20211007-140653-000.gif")
-
+'''
 
 # 데이터 학습 및 저장 구현
 
@@ -55,35 +48,44 @@ def delete_old_chatbot_data():
 
 # 챗봇 답변 기능
 @bot.command(
-    name="푸앙아",
-    description="푸앙이랑 이야기해요!",
+    name="chat",
+    description="chatbot",
+    scope=1039072581237624952,
+    options=[
+        interactions.Option(
+            name="question",
+            description="please ask me a question",
+            type=interactions.OptionType.STRING,
+            required=True,
+        ),
+    ],
 )
-async def my_third_command(ctx, text: str):
-    await ctx.send(chat(text))
+async def teach(ctx: interactions.CommandContext, question):
+    await ctx.send(question)
 
 
 # 가르치기 기능
 @bot.command(
-    name = "가르치기", #/명령어 이름
-    description = "푸앙이를 가르쳐주세요!", #/명령어 설명
+    name = "teach", #/명령어 이름
+    description = "teach me!", #/명령어 설명
     scope = 1039072581237624952, #서버 id
     options = [
         interactions.Option(
-            name = "질문:", #/명령어 옵션 이름
-            description = "어떻게 물어보실건가요?", #/명령어 옵션 설명
+            name = "question:", #/명령어 옵션 이름
+            description = "what do you want to ask?", #/명령어 옵션 설명
             type = interactions.OptionType.STRING,
             required=True,
         ),
         interactions.Option(
-            name = "답변:",
-            description = "어떻게 대답할까요?",
+            name = "answer:", #/명령어 옵션 이름
+            description = "what do you want to answer?", #/명령어 옵션 설명
             type = interactions.OptionType.STRING,
             required = True, 
         ),
     ],
 )
 async def first_command(ctx: interactions.CommandContext, question, answer):
-        await ctx.send(f"저에게 ``'{answer}'`` 라고 물어보시면 ``'{question}'`` 라고 대답할게요!")
+        await ctx.send(f"``'{answer}'````'{question}'``")
 
         # 질문과 답변을 저장
         today = datetime.datetime.today()
