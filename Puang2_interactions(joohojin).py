@@ -2,7 +2,7 @@ from interactions import Client, Message
 from interactions.ext.wait_for import wait_for, setup
 import asyncio
 
-bot = Client(token="MTA1MzIwMzY3NjE1MzUyMDEyOA.Ggd2IG.wDG7Jz1h_YT3Dbdy-LChoMKC6e5Lo7Kdd9M_58")
+bot = Client(token="토큰")
 
 setup(bot)
 
