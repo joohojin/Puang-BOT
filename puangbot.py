@@ -7,7 +7,7 @@ import time
 
 import datetime
 
-bot = interactions.Client(token="토큰")
+bot = interactions.Client(token="MTA0MjYxODA5MDA2NTc3NjY5MQ.G1LQyk.v7eUNU96pqSz4XPGV1lrjs1T8PfW6pZuJ2bIOg")
 
 user_dic = {}
 
@@ -68,25 +68,25 @@ async def teach(ctx: interactions.CommandContext, question):
 # 가르치기 기능
 @bot.command(
     name = "teach", #/명령어 이름
-    description = "teach me!", #/명령어 설명
+    description = "teach me", #/명령어 설명
     scope = 1039072581237624952, #서버 id
     options = [
         interactions.Option(
-            name = "question:", #/명령어 옵션 이름
-            description = "what do you want to ask?", #/명령어 옵션 설명
+            name = "question", #/명령어 옵션 이름
+            description = "what do you want to ask", #/명령어 옵션 설명
             type = interactions.OptionType.STRING,
             required=True,
         ),
         interactions.Option(
-            name = "answer:", #/명령어 옵션 이름
-            description = "what do you want to answer?", #/명령어 옵션 설명
+            name = "answer", #/명령어 옵션 이름
+            description = "what do you want to answer", #/명령어 옵션 설명
             type = interactions.OptionType.STRING,
             required = True, 
         ),
     ],
 )
 async def first_command(ctx: interactions.CommandContext, question, answer):
-        await ctx.send(f"``'{answer}'````'{question}'``")
+        await ctx.send(f"``'{answer}'``:``'{question}'``")
 
         # 질문과 답변을 저장
         today = datetime.datetime.today()
