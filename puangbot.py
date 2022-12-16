@@ -1,5 +1,6 @@
 import discord
 import interactions
+from discord.ext import commands
 import asyncio
 import os
 import pandas as pd
@@ -7,14 +8,18 @@ import time
 
 import datetime
 
-bot = interactions.Client(token="MTA0MjYxODA5MDA2NTc3NjY5MQ.G1LQyk.v7eUNU96pqSz4XPGV1lrjs1T8PfW6pZuJ2bIOg")
 
-user_dic = {}
+game = discord.Game("퐝퐝이")
+
+intents = discord.Intents.all()
+
+bot = commands.Bot(command_prefix= "!", intents = intents, status=discord.Status.online, activity=game)
+
 
 with open("data/puang-art.txt", "r", encoding="utf-8") as f:
     data = f.read()
 
-'''
+
 # 이스터에그
 @bot.command()
 async def 푸앙이(ctx):
@@ -23,7 +28,7 @@ async def 푸앙이(ctx):
 @bot.command()
 async def 애옹(ctx):
     await ctx.send("https://media.discordapp.net/attachments/844584876904677440/895539776709607454/95261-20211007-140653-000.gif")
-'''
+
 
 # 데이터 학습 및 저장 구현
 
@@ -48,45 +53,15 @@ def delete_old_chatbot_data():
 
 
 # 챗봇 답변 기능
-@bot.command(
-    name="chat",
-    description="chatbot",
-    scope=1039072581237624952,
-    options=[
-        interactions.Option(
-            name="question",
-            description="please ask me a question",
-            type=interactions.OptionType.STRING,
-            required=True,
-        ),
-    ],
-)
-async def teach(ctx: interactions.CommandContext, question):
-    await ctx.send(question)
+@bot.slash_command(name = "대화", desription = "푸앙이와 대화하기", guild_ids = [1039072581237624952])
+async def teach(ctx, message):
+    await ctx.respond(message)
 
 
 # 가르치기 기능
-@bot.command(
-    name = "teach", #/명령어 이름
-    description = "teach me", #/명령어 설명
-    scope = 1039072581237624952, #서버 id
-    options = [
-        interactions.Option(
-            name = "question", #/명령어 옵션 이름
-            description = "what do you want to ask", #/명령어 옵션 설명
-            type = interactions.OptionType.STRING,
-            required=True,
-        ),
-        interactions.Option(
-            name = "answer", #/명령어 옵션 이름
-            description = "what do you want to answer", #/명령어 옵션 설명
-            type = interactions.OptionType.STRING,
-            required = True, 
-        ),
-    ],
-)
-async def first_command(ctx: interactions.CommandContext, question, answer):
-        await ctx.send(f"``'{answer}'``:``'{question}'``")
+@bot.slash_command(name = "가르치기", description = "푸앙이에게 질문과 답변 가르치기",guild_ids = [1039072581237624952])
+async def first_command(ctx, question, answer):
+        await ctx.respond(f"``'{question}'``에 대한 답변:``'{answer}'``")
 
         # 질문과 답변을 저장
         today = datetime.datetime.today()
@@ -95,6 +70,9 @@ async def first_command(ctx: interactions.CommandContext, question, answer):
         # ChatBotData.csv를 저장합니다.
         chatbot_data.to_csv('data/ChatBotData.csv', index=False)
 
+@bot.event
+async def on_ready():
+    print("Ready!")
 
 # 먼저 기존의 ChatBotData.csv를 data\ChatBotData-Old에 저장합니다.
 save_old_chatbot_data()
@@ -103,12 +81,12 @@ save_old_chatbot_data()
 delete_old_chatbot_data()
 
 
-bot.start()
+#Token.txt. 파일을 읽어와 token에 저장합니다.
+with open ('Token.txt', 'r') as f:
+    token = f.read()
 
 
-
-
-
+bot.run(token)
 
 
 
