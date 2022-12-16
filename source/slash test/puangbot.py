@@ -53,13 +53,15 @@ def delete_old_chatbot_data():
 
 
 # 챗봇 답변 기능
-@bot.slash_command(name = "대화", desription = "푸앙이와 대화하기", guild_ids = [1039072581237624952])
+@bot.slash_command(name = "푸앙아", desription = "푸앙이와 대화하기")
 async def teach(ctx, message):
-    await ctx.respond(message)
+    await ctx.respond(ctx.author.name +  "님 :" + message)
+    await ctx.respond("여기에 답변 입력")
+
 
 
 # 가르치기 기능
-@bot.slash_command(name = "가르치기", description = "푸앙이에게 질문과 답변 가르치기",guild_ids = [1039072581237624952])
+@bot.slash_command(name = "가르치기", description = "푸앙이에게 질문과 답변 가르치기")
 async def first_command(ctx, question, answer):
         await ctx.respond(f"``'{question}'``에 대한 답변:``'{answer}'``")
 
