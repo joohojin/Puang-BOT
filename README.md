@@ -95,8 +95,7 @@ User : /가르치기 '1+1은?' '2입니다!'
 
 ## 2. main.ipynb를 사용하는 방법
 
-- main.ipynb를 실행하면 Puang-BOT이 실행됩니다.
-- 토큰은 직접 '여기에 토큰을 입력하세요'에 입력해야 합니다.
+- 먼저 Token.txt에 Discord Bot Token을 입력합니다.
 - 모든 셀을 실행하면 Puang-BOT이 실행됩니다.
 
 ## 3. main.py를 사용하는 방법
