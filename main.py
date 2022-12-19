@@ -604,6 +604,7 @@ bot = commands.Bot(command_prefix= "!", intents = intents, status=discord.Status
 
 @bot.event
 async def on_ready():
+    print("Ready!")
     print('다음으로 로그인합니다 : {0.user}'.format(bot))
 
 with open("data/puang-art.txt", "r", encoding="utf-8") as f:
@@ -624,9 +625,9 @@ async def 애옹(ctx):
 async def 학습시작(ctx):
     await ctx.send("챗봇 학습을 시작합니다.")
     # Puang-BOT Client.exe를 껐다가 다시 켜는 코드
-    os.system("taskkill /f /im Puang-BOT Client.exe")
+    os.system("taskkill /f /im Puang-BOT-Client.exe")
     time.sleep(5)
-    os.system("start Puang-BOT Client.exe")
+    os.system("start Puang-BOT-Client.exe")
 
 
 # 데이터 학습 및 저장 구현
@@ -660,6 +661,7 @@ async def teach(ctx, 메시지):
 
 # 가르치기 기능
 @bot.slash_command(name = "가르치기", description = "푸앙이에게 질문과 대답 가르치기")
+# 질문과 대답을 입력받는다. 각각 description은 질문과 대답에 대한 설명으로 채워넣는다.
 async def first_command(ctx, 질문, 대답):
         await ctx.respond(f"앞으로 ``'{질문}'``이라는 질문에 ``'{대답}'``라고 대답할게요!")
 
@@ -669,10 +671,6 @@ async def first_command(ctx, 질문, 대답):
         chatbot_data.loc[len(chatbot_data)] = [질문, 대답, today + "(" + ctx.author.name + ")"]
         # ChatBotData.csv를 저장합니다.
         chatbot_data.to_csv('data/ChatBotData.csv', index=False)
-
-@bot.event
-async def on_ready():
-    print("Ready!")
 
 # 먼저 기존의 ChatBotData.csv를 data\ChatBotData-Old에 저장합니다.
 save_old_chatbot_data()

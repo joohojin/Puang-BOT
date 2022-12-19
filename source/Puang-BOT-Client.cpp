@@ -30,6 +30,9 @@ int main() {
     // 7분간 대기합니다.
     this_thread::sleep_for(chrono::seconds(420));
 
+    // fakepuang.exe를 정지합니다.
+    system("taskkill /f /im fakepuang.exe");
+
 
     while (true) {
 		// 현재 시간을 hour, min, sec에 기록합니다.
