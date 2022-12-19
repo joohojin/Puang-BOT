@@ -653,7 +653,7 @@ def delete_old_chatbot_data():
 
 
 # 챗봇 답변 기능
-@bot.slash_command(name = "푸앙아", desription = "푸앙이와 대화하기")
+@bot.slash_command(name = "푸앙아", description = "푸앙이와 대화하기")
 async def teach(ctx, 메시지):
     await ctx.respond(ctx.author.name +  "님 :" + 메시지)
     await ctx.respond(chat(메시지))
