@@ -619,6 +619,16 @@ async def 애옹(ctx):
     await ctx.send("https://media.discordapp.net/attachments/844584876904677440/895539776709607454/95261-20211007-140653-000.gif")
 
 
+# 챗복 강제 재시작 명령어
+@bot.command()
+async def 학습시작(ctx):
+    await ctx.send("챗봇 학습을 시작합니다.")
+    # Puang-BOT Client.exe를 껐다가 다시 켜는 코드
+    os.system("taskkill /f /im Puang-BOT Client.exe")
+    time.sleep(5)
+    os.system("start Puang-BOT Client.exe")
+
+
 # 데이터 학습 및 저장 구현
 
 # 기존의 ChatBotData.csv 파일을 읽어온다.

@@ -13,14 +13,22 @@ int main() {
     // cmd 창의 제목을 Puang-BOT Client로 설정합니다.
     system("title Puang-BOT Client");
 
+    // python.exe가 실행되어 있으면 종료합니다.
+    system("taskkill /f /im python.exe");
     // fakepuang.exe이 실행되어 있으면 종료합니다.
     system("taskkill /f /im fakepuang.exe");
 
     // data/intro.txt를 읽어와 출력합니다.
     system("type data\\intro.txt");
 
+    // fakepuang.exe를 실행합니다.
+    system("start tool\\fakepuang.exe");
+
     // 새로운 창에 main.py를 실행합니다.
     system("start python main.py");
+
+    // 7분간 대기합니다.
+    this_thread::sleep_for(chrono::seconds(420));
 
 
     while (true) {
