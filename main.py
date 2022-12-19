@@ -620,7 +620,7 @@ async def 애옹(ctx):
     await ctx.send("https://media.discordapp.net/attachments/844584876904677440/895539776709607454/95261-20211007-140653-000.gif")
 
 
-# 챗복 강제 재시작 명령어
+# 챗봇 강제 재시작 명령어
 @bot.command()
 async def 학습시작(ctx):
     await ctx.send("챗봇 학습을 시작합니다.")
